@@ -1,0 +1,17 @@
+***************
+*** 53,59 ****
+                  return "SmartNull returned by unstubbed " + formatMethodCall()  + " method on mock";
+              }
+  
+-             new Reporter().smartNullPointerException(location);
+              return null;
+          }
+  
+--- 53,59 ----
+                  return "SmartNull returned by unstubbed " + formatMethodCall()  + " method on mock";
+              }
+  
++             new Reporter().smartNullPointerException(obj, location);
+              return null;
+          }
+  

@@ -1,0 +1,27 @@
+***************
+*** 1189,1199 ****
+          }
+          if (plotState != null && hotspot != null) {
+              ChartRenderingInfo owner = plotState.getOwner();
+                  EntityCollection entities = owner.getEntityCollection();
+                  if (entities != null) {
+                      entities.add(new AxisLabelEntity(this, hotspot, 
+                              this.labelToolTip, this.labelURL));
+                  }
+          }
+          return state;
+  
+--- 1189,1201 ----
+          }
+          if (plotState != null && hotspot != null) {
+              ChartRenderingInfo owner = plotState.getOwner();
++             if (owner != null) {
+                  EntityCollection entities = owner.getEntityCollection();
+                  if (entities != null) {
+                      entities.add(new AxisLabelEntity(this, hotspot, 
+                              this.labelToolTip, this.labelURL));
+                  }
++             }
+          }
+          return state;
+  

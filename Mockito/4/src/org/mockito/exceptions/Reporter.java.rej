@@ -1,0 +1,52 @@
+***************
+*** 421,427 ****
+          throw new NoInteractionsWanted(join(
+                  "No interactions wanted here:",
+                  new LocationImpl(),
+-                 "But found this interaction on mock '" + undesired.getMock() + "':",
+                  undesired.getLocation(),
+                  scenario
+          ));
+--- 421,427 ----
+          throw new NoInteractionsWanted(join(
+                  "No interactions wanted here:",
+                  new LocationImpl(),
++                 "But found this interaction on mock '" + safelyGetMockName(undesired.getMock()) + "':",
+                  undesired.getLocation(),
+                  scenario
+          ));
+***************
+*** 431,437 ****
+          throw new VerificationInOrderFailure(join(
+                  "No interactions wanted here:",
+                  new LocationImpl(),
+-                 "But found this interaction on mock '" + undesired.getMock() + "':",
+                  undesired.getLocation()
+          ));
+      }
+--- 431,437 ----
+          throw new VerificationInOrderFailure(join(
+                  "No interactions wanted here:",
+                  new LocationImpl(),
++                 "But found this interaction on mock '" + safelyGetMockName(undesired.getMock()) + "':",
+                  undesired.getLocation()
+          ));
+      }
+***************
+*** 674,679 ****
+      }
+  
+      private String exceptionCauseMessageIfAvailable(Exception details) {
+          return details.getCause().getMessage();
+      }
+  
+--- 674,682 ----
+      }
+  
+      private String exceptionCauseMessageIfAvailable(Exception details) {
++         if (details.getCause() == null) {
++             return details.getMessage();
++         }
+          return details.getCause().getMessage();
+      }
+  

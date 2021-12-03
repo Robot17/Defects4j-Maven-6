@@ -1,0 +1,27 @@
+***************
+*** 427,441 ****
+                          xNorm    += xK * xK;
+                      }
+                      xNorm = Math.sqrt(xNorm);
+-                     current = new VectorialPointValuePair(point, objective);
+  
+                      // tests for convergence.
+-                     if (checker != null) {
+                      // we use the vectorial convergence checker
+-                     	if (checker.converged(getIterations(), previous, current)) {
+-                     		return current;
+-                     	}
+-                     }
+                  } else {
+                      // failed iteration, reset the previous values
+                      cost = previousCost;
+--- 418,426 ----
+                          xNorm    += xK * xK;
+                      }
+                      xNorm = Math.sqrt(xNorm);
+  
+                      // tests for convergence.
+                      // we use the vectorial convergence checker
+                  } else {
+                      // failed iteration, reset the previous values
+                      cost = previousCost;

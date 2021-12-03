@@ -1,0 +1,19 @@
+***************
+*** 233,242 ****
+                          out.write('\\');
+                          out.write('\\');
+                          break;
+-                     case '/':
+-                         out.write('\\');
+-                         out.write('/');
+-                         break;
+                      default :
+                          out.write(ch);
+                          break;
+--- 233,238 ----
+                          out.write('\\');
+                          out.write('\\');
+                          break;
+                      default :
+                          out.write(ch);
+                          break;

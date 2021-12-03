@@ -1,0 +1,34 @@
+***************
+*** 257,263 ****
+  
+          if (divisor.isZero) {
+              // return isZero ? NaN : INF; // See MATH-657
+-             return isZero ? NaN : INF;
+          }
+  
+          if (divisor.isInfinite() && !isInfinite()) {
+--- 257,263 ----
+  
+          if (divisor.isZero) {
+              // return isZero ? NaN : INF; // See MATH-657
++             return NaN;
+          }
+  
+          if (divisor.isInfinite() && !isInfinite()) {
+***************
+*** 294,300 ****
+          }
+          if (divisor == 0d) {
+              // return isZero ? NaN : INF; // See MATH-657
+-             return isZero ? NaN : INF;
+          }
+          if (Double.isInfinite(divisor)) {
+              return !isInfinite() ? ZERO : NaN;
+--- 294,300 ----
+          }
+          if (divisor == 0d) {
+              // return isZero ? NaN : INF; // See MATH-657
++             return NaN;
+          }
+          if (Double.isInfinite(divisor)) {
+              return !isInfinite() ? ZERO : NaN;

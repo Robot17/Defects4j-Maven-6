@@ -1,0 +1,20 @@
+***************
+*** 818,824 ****
+              throw new DimensionMismatchException(len, b.length);
+          }
+  
+              // Revert to scalar multiplication.
+  
+          final double[] prodHigh = new double[len];
+          double prodLowSum = 0;
+--- 818,827 ----
+              throw new DimensionMismatchException(len, b.length);
+          }
+  
++         if (len == 1) {
+              // Revert to scalar multiplication.
++             return a[0] * b[0];
++         }
+  
+          final double[] prodHigh = new double[len];
+          double prodLowSum = 0;

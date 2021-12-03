@@ -1,0 +1,67 @@
+***************
+*** 20,26 ****
+  	}
+  
+  	public OngoingInjecter filterCandidate(Collection<Object> mocks,
+- 			Field field, Object fieldInstance) {
+  		List<Object> mockNameMatches = new ArrayList<Object>();
+  		if (mocks.size() > 1) {
+  			for (Object mock : mocks) {
+--- 20,26 ----
+  	}
+  
+  	public OngoingInjecter filterCandidate(Collection<Object> mocks,
++ 			Field field, List<Field> fields, Object fieldInstance) {
+  		List<Object> mockNameMatches = new ArrayList<Object>();
+  		if (mocks.size() > 1) {
+  			for (Object mock : mocks) {
+***************
+*** 28,34 ****
+  					mockNameMatches.add(mock);
+  				}
+  			}
+- 			return next.filterCandidate(mockNameMatches, field,
+  					fieldInstance);
+  			/*
+  			 * In this case we have to check whether we have conflicting naming
+--- 28,34 ----
+  					mockNameMatches.add(mock);
+  				}
+  			}
++ 			return next.filterCandidate(mockNameMatches, field, fields,
+  					fieldInstance);
+  			/*
+  			 * In this case we have to check whether we have conflicting naming
+***************
+*** 39,45 ****
+  			 * whenever we find a field that does match its name with the mock
+  			 * name, we should take that field instead.
+  			 */
+  		}
+- 		return next.filterCandidate(mocks, field, fieldInstance);
+  	}
+  }
+--- 39,61 ----
+  			 * whenever we find a field that does match its name with the mock
+  			 * name, we should take that field instead.
+  			 */
++ 		} else if (mocks.size() == 1) {
++ 			String mockName = mockUtil.getMockName(mocks.iterator().next())
++ 					.toString();
++ 
++ 			for (Field otherField : fields) {
++ 				if (!otherField.equals(field)
++ 						&& otherField.getType().equals(field.getType())
++ 						&& otherField.getName().equals(mockName)) {
++ 
++ 					return new OngoingInjecter() {
++ 						public Object thenInject() {
++ 							return null;
++ 						}
++ 					};
++ 				}
++ 			}
+  		}
++ 		return next.filterCandidate(mocks, field, fields, fieldInstance);
+  	}
+  }

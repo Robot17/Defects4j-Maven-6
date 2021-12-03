@@ -1,0 +1,66 @@
+***************
+*** 148,153 ****
+          UnivariatePointValuePair current
+              = new UnivariatePointValuePair(x, isMinim ? fx : -fx);
+          // Best point encountered so far (which is the initial guess).
+  
+          int iter = 0;
+          while (true) {
+--- 148,154 ----
+          UnivariatePointValuePair current
+              = new UnivariatePointValuePair(x, isMinim ? fx : -fx);
+          // Best point encountered so far (which is the initial guess).
++         UnivariatePointValuePair best = current;
+  
+          int iter = 0;
+          while (true) {
+***************
+*** 231,240 ****
+                  // User-defined convergence checker.
+                  previous = current;
+                  current = new UnivariatePointValuePair(u, isMinim ? fu : -fu);
+  
+                  if (checker != null) {
+                      if (checker.converged(iter, previous, current)) {
+-                         return best(current, previous, isMinim);
+                      }
+                  }
+  
+--- 232,246 ----
+                  // User-defined convergence checker.
+                  previous = current;
+                  current = new UnivariatePointValuePair(u, isMinim ? fu : -fu);
++                 best = best(best,
++                             best(current,
++                                  previous,
++                                  isMinim),
++                             isMinim);
+  
+                  if (checker != null) {
+                      if (checker.converged(iter, previous, current)) {
++                         return best;
+                      }
+                  }
+  
+***************
+*** 271,279 ****
+                      }
+                  }
+              } else { // Default termination (Brent's criterion).
+-                 return
+                              best(current,
+                                   previous,
+                              isMinim);
+              }
+              ++iter;
+--- 277,286 ----
+                      }
+                  }
+              } else { // Default termination (Brent's criterion).
++                 return best(best,
+                              best(current,
+                                   previous,
++                                  isMinim),
+                              isMinim);
+              }
+              ++iter;

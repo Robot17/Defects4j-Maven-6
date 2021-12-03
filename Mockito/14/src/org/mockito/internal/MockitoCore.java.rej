@@ -1,0 +1,33 @@
+***************
+*** 20,25 ****
+  import org.mockito.internal.stubbing.OngoingStubbingImpl;
+  import org.mockito.internal.stubbing.StubberImpl;
+  import org.mockito.internal.util.MockUtil;
+  import org.mockito.internal.verification.VerificationDataImpl;
+  import org.mockito.internal.verification.VerificationModeFactory;
+  import org.mockito.internal.verification.api.InOrderContext;
+--- 20,26 ----
+  import org.mockito.internal.stubbing.OngoingStubbingImpl;
+  import org.mockito.internal.stubbing.StubberImpl;
+  import org.mockito.internal.util.MockUtil;
++ import org.mockito.internal.verification.MockAwareVerificationMode;
+  import org.mockito.internal.verification.VerificationDataImpl;
+  import org.mockito.internal.verification.VerificationModeFactory;
+  import org.mockito.internal.verification.api.InOrderContext;
+***************
+*** 70,76 ****
+          } else if (!mockUtil.isMock(mock)) {
+              reporter.notAMockPassedToVerify();
+          }
+-         mockingProgress.verificationStarted(mode);
+          return mock;
+      }
+      
+--- 71,77 ----
+          } else if (!mockUtil.isMock(mock)) {
+              reporter.notAMockPassedToVerify();
+          }
++         mockingProgress.verificationStarted(new MockAwareVerificationMode(mock, mode));
+          return mock;
+      }
+      

@@ -1,0 +1,17 @@
+***************
+*** 265,271 ****
+       * size {@code n}, the mean is {@code n * m / N}.
+       */
+      public double getNumericalMean() {
+-         return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();
+      }
+  
+      /**
+--- 265,271 ----
+       * size {@code n}, the mean is {@code n * m / N}.
+       */
+      public double getNumericalMean() {
++         return getSampleSize() * (getNumberOfSuccesses() / (double) getPopulationSize());
+      }
+  
+      /**

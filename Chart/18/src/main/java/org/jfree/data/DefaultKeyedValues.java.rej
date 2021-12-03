@@ -1,0 +1,37 @@
+***************
+*** 315,323 ****
+      public void removeValue(int index) {
+          this.keys.remove(index);
+          this.values.remove(index);
+-         if (index < this.keys.size()) {
+          rebuildIndex();
+-         }
+      }
+  
+      /**
+--- 315,321 ----
+      public void removeValue(int index) {
+          this.keys.remove(index);
+          this.values.remove(index);
+          rebuildIndex();
+      }
+  
+      /**
+***************
+*** 332,338 ****
+      public void removeValue(Comparable key) {
+          int index = getIndex(key);
+          if (index < 0) {
+- 			return;
+          }
+          removeValue(index);
+      }
+--- 330,337 ----
+      public void removeValue(Comparable key) {
+          int index = getIndex(key);
+          if (index < 0) {
++             throw new UnknownKeyException("The key (" + key 
++                     + ") is not recognised.");
+          }
+          removeValue(index);
+      }

@@ -1,0 +1,36 @@
+***************
+*** 2290,2295 ****
+              markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
+                      index));
+          }
+          boolean removed = markers.remove(marker);
+          if (removed && notify) {
+              fireChangeEvent();
+--- 2290,2298 ----
+              markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
+                      index));
+          }
++         if (markers == null) {
++             return false;
++         }
+          boolean removed = markers.remove(marker);
+          if (removed && notify) {
+              fireChangeEvent();
+***************
+*** 2526,2531 ****
+              markers = (ArrayList) this.backgroundRangeMarkers.get(new Integer(
+                      index));
+          }
+          boolean removed = markers.remove(marker);
+          if (removed && notify) {
+              fireChangeEvent();
+--- 2529,2537 ----
+              markers = (ArrayList) this.backgroundRangeMarkers.get(new Integer(
+                      index));
+          }
++         if (markers == null) {
++             return false;
++         }
+          boolean removed = markers.remove(marker);
+          if (removed && notify) {
+              fireChangeEvent();

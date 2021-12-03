@@ -1,0 +1,16 @@
+***************
+*** 679,685 ****
+                          (str.charAt(1) == 'E' || str.charAt(1) == 'e') &&
+                          (str.charAt(2) == 'S' || str.charAt(2) == 's');
+                  }
+-                 return false;
+              }
+              case 4: {
+                  char ch = str.charAt(0);
+--- 679,684 ----
+                          (str.charAt(1) == 'E' || str.charAt(1) == 'e') &&
+                          (str.charAt(2) == 'S' || str.charAt(2) == 's');
+                  }
+              }
+              case 4: {
+                  char ch = str.charAt(0);

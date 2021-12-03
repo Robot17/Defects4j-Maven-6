@@ -1,0 +1,17 @@
+***************
+*** 594,600 ****
+       * @return the fraction percentage as a <tt>double</tt>.
+       */
+      public double percentageValue() {
+-         return multiply(100).doubleValue();
+      }
+  
+      /**
+--- 594,600 ----
+       * @return the fraction percentage as a <tt>double</tt>.
+       */
+      public double percentageValue() {
++         return 100 * doubleValue();
+      }
+  
+      /**

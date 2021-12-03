@@ -1,0 +1,340 @@
+***************
+*** 119,125 ****
+       * @return <code>false</code>.
+       */
+      public static boolean anyBoolean() {
+-         return reportMatcher(Any.ANY).returnFalse();
+      }
+  
+      /**
+--- 119,125 ----
+       * @return <code>false</code>.
+       */
+      public static boolean anyBoolean() {
++         return reportMatcher(new InstanceOf(Boolean.class)).returnFalse();
+      }
+  
+      /**
+***************
+*** 134,140 ****
+       * @return <code>0</code>.
+       */
+      public static byte anyByte() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 134,140 ----
+       * @return <code>0</code>.
+       */
+      public static byte anyByte() {
++         return reportMatcher(new InstanceOf(Byte.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 149,155 ****
+       * @return <code>0</code>.
+       */
+      public static char anyChar() {
+-         return reportMatcher(Any.ANY).returnChar();
+      }
+  
+      /**
+--- 149,155 ----
+       * @return <code>0</code>.
+       */
+      public static char anyChar() {
++         return reportMatcher(new InstanceOf(Character.class)).returnChar();
+      }
+  
+      /**
+***************
+*** 164,170 ****
+       * @return <code>0</code>.
+       */
+      public static int anyInt() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 164,170 ----
+       * @return <code>0</code>.
+       */
+      public static int anyInt() {
++         return reportMatcher(new InstanceOf(Integer.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 179,185 ****
+       * @return <code>0</code>.
+       */
+      public static long anyLong() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 179,185 ----
+       * @return <code>0</code>.
+       */
+      public static long anyLong() {
++         return reportMatcher(new InstanceOf(Long.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 194,200 ****
+       * @return <code>0</code>.
+       */
+      public static float anyFloat() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 194,200 ----
+       * @return <code>0</code>.
+       */
+      public static float anyFloat() {
++         return reportMatcher(new InstanceOf(Float.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 209,215 ****
+       * @return <code>0</code>.
+       */
+      public static double anyDouble() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 209,215 ----
+       * @return <code>0</code>.
+       */
+      public static double anyDouble() {
++         return reportMatcher(new InstanceOf(Double.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 224,230 ****
+       * @return <code>0</code>.
+       */
+      public static short anyShort() {
+-         return reportMatcher(Any.ANY).returnZero();
+      }
+  
+      /**
+--- 224,230 ----
+       * @return <code>0</code>.
+       */
+      public static short anyShort() {
++         return reportMatcher(new InstanceOf(Short.class)).returnZero();
+      }
+  
+      /**
+***************
+*** 241,247 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T anyObject() {
+-         return (T) reportMatcher(Any.ANY).returnNull();
+      }
+  
+      /**
+--- 241,247 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T anyObject() {
++         return (T) reportMatcher(new InstanceOf(Object.class)).returnNull();
+      }
+  
+      /**
+***************
+*** 289,295 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T any(Class<T> clazz) {
+-         return (T) reportMatcher(Any.ANY).returnFor(clazz);
+      }
+      
+      /**
+--- 289,295 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T any(Class<T> clazz) {
++         return (T) reportMatcher(new InstanceOf(clazz)).returnFor(clazz);
+      }
+      
+      /**
+***************
+*** 306,312 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T any() {
+-         return (T) anyObject();
+      }
+  
+      /**
+--- 306,312 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T any() {
++         return (T) reportMatcher(Any.ANY).returnNull();
+      }
+  
+      /**
+***************
+*** 321,327 ****
+       * @return empty String ("")
+       */
+      public static String anyString() {
+-         return reportMatcher(Any.ANY).returnString();
+      }
+      
+      /**
+--- 321,327 ----
+       * @return empty String ("")
+       */
+      public static String anyString() {
++         return reportMatcher(new InstanceOf(String.class)).returnString();
+      }
+      
+      /**
+***************
+*** 336,342 ****
+       * @return empty List.
+       */
+      public static List anyList() {
+-         return reportMatcher(Any.ANY).returnList();
+      }    
+      
+      /**
+--- 336,342 ----
+       * @return empty List.
+       */
+      public static List anyList() {
++         return reportMatcher(new InstanceOf(List.class)).returnList();
+      }    
+      
+      /**
+***************
+*** 355,361 ****
+       * @return empty List.
+       */
+      public static <T> List<T> anyListOf(Class<T> clazz) {
+-         return (List) reportMatcher(Any.ANY).returnList();
+      }    
+      
+      /**
+--- 355,361 ----
+       * @return empty List.
+       */
+      public static <T> List<T> anyListOf(Class<T> clazz) {
++         return anyList();
+      }    
+      
+      /**
+***************
+*** 370,376 ****
+       * @return empty Set
+       */
+      public static Set anySet() {
+-         return reportMatcher(Any.ANY).returnSet();
+      }
+      
+      /**
+--- 370,376 ----
+       * @return empty Set
+       */
+      public static Set anySet() {
++         return reportMatcher(new InstanceOf(Set.class)).returnSet();
+      }
+      
+      /**
+***************
+*** 389,395 ****
+       * @return empty Set
+       */
+      public static <T> Set<T> anySetOf(Class<T> clazz) {
+-         return (Set) reportMatcher(Any.ANY).returnSet();
+      }
+  
+      /**
+--- 389,395 ----
+       * @return empty Set
+       */
+      public static <T> Set<T> anySetOf(Class<T> clazz) {
++         return anySet();
+      }
+  
+      /**
+***************
+*** 404,410 ****
+       * @return empty Map.
+       */
+      public static Map anyMap() {
+-         return reportMatcher(Any.ANY).returnMap();
+      }
+  
+      /**
+--- 404,410 ----
+       * @return empty Map.
+       */
+      public static Map anyMap() {
++         return reportMatcher(new InstanceOf(Map.class)).returnMap();
+      }
+  
+      /**
+***************
+*** 424,430 ****
+       * @return empty Map.
+       */
+      public static <K, V>  Map<K, V> anyMapOf(Class<K> keyClazz, Class<V> valueClazz) {
+-         return reportMatcher(Any.ANY).returnMap();
+      }
+      
+      /**
+--- 424,430 ----
+       * @return empty Map.
+       */
+      public static <K, V>  Map<K, V> anyMapOf(Class<K> keyClazz, Class<V> valueClazz) {
++         return anyMap();
+      }
+      
+      /**
+***************
+*** 439,445 ****
+       * @return empty Collection.
+       */
+      public static Collection anyCollection() {
+-         return reportMatcher(Any.ANY).returnList();
+      }    
+      
+      /**
+--- 439,445 ----
+       * @return empty Collection.
+       */
+      public static Collection anyCollection() {
++         return reportMatcher(new InstanceOf(Collection.class)).returnList();
+      }    
+      
+      /**
+***************
+*** 458,464 ****
+       * @return empty Collection.
+       */
+      public static <T> Collection<T> anyCollectionOf(Class<T> clazz) {
+-         return (Collection) reportMatcher(Any.ANY).returnList();
+      }    
+  
+      /**
+--- 458,464 ----
+       * @return empty Collection.
+       */
+      public static <T> Collection<T> anyCollectionOf(Class<T> clazz) {
++         return anyCollection();
+      }    
+  
+      /**

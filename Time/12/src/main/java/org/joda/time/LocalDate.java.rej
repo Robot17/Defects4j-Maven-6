@@ -1,0 +1,44 @@
+***************
+*** 207,215 ****
+          if (calendar == null) {
+              throw new IllegalArgumentException("The calendar must not be null");
+          }
+          int yearOfEra = calendar.get(Calendar.YEAR);
+          return new LocalDate(
+-             yearOfEra,
+              calendar.get(Calendar.MONTH) + 1,
+              calendar.get(Calendar.DAY_OF_MONTH)
+          );
+--- 207,216 ----
+          if (calendar == null) {
+              throw new IllegalArgumentException("The calendar must not be null");
+          }
++         int era = calendar.get(Calendar.ERA);
+          int yearOfEra = calendar.get(Calendar.YEAR);
+          return new LocalDate(
++             (era == GregorianCalendar.AD ? yearOfEra : 1 - yearOfEra),
+              calendar.get(Calendar.MONTH) + 1,
+              calendar.get(Calendar.DAY_OF_MONTH)
+          );
+***************
+*** 240,246 ****
+          if (date == null) {
+              throw new IllegalArgumentException("The date must not be null");
+          }
+              // handle years in era BC
+          return new LocalDate(
+              date.getYear() + 1900,
+              date.getMonth() + 1,
+--- 241,252 ----
+          if (date == null) {
+              throw new IllegalArgumentException("The date must not be null");
+          }
++         if (date.getTime() < 0) {
+              // handle years in era BC
++             GregorianCalendar cal = new GregorianCalendar();
++             cal.setTime(date);
++             return fromCalendarFields(cal);
++         }
+          return new LocalDate(
+              date.getYear() + 1900,
+              date.getMonth() + 1,

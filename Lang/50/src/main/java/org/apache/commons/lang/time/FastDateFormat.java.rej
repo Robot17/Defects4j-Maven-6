@@ -1,0 +1,64 @@
+***************
+*** 282,295 ****
+              key = new Pair(key, timeZone);
+          }
+  
+-         if (locale == null) {
+-             locale = Locale.getDefault();
+          }
+  
+-         key = new Pair(key, locale);
+  
+          FastDateFormat format = (FastDateFormat) cDateInstanceCache.get(key);
+          if (format == null) {
+              try {
+                  SimpleDateFormat formatter = (SimpleDateFormat) DateFormat.getDateInstance(style, locale);
+                  String pattern = formatter.toPattern();
+--- 282,297 ----
+              key = new Pair(key, timeZone);
+          }
+  
++         if (locale != null) {
++             key = new Pair(key, locale);
+          }
+  
+  
+          FastDateFormat format = (FastDateFormat) cDateInstanceCache.get(key);
+          if (format == null) {
++             if (locale == null) {
++                 locale = Locale.getDefault();
++             }
+              try {
+                  SimpleDateFormat formatter = (SimpleDateFormat) DateFormat.getDateInstance(style, locale);
+                  String pattern = formatter.toPattern();
+***************
+*** 460,472 ****
+          if (timeZone != null) {
+              key = new Pair(key, timeZone);
+          }
+-         if (locale == null) {
+-             locale = Locale.getDefault();
+          }
+-         key = new Pair(key, locale);
+  
+          FastDateFormat format = (FastDateFormat) cDateTimeInstanceCache.get(key);
+          if (format == null) {
+              try {
+                  SimpleDateFormat formatter = (SimpleDateFormat) DateFormat.getDateTimeInstance(dateStyle, timeStyle,
+                          locale);
+--- 462,476 ----
+          if (timeZone != null) {
+              key = new Pair(key, timeZone);
+          }
++         if (locale != null) {
++             key = new Pair(key, locale);
+          }
+  
+          FastDateFormat format = (FastDateFormat) cDateTimeInstanceCache.get(key);
+          if (format == null) {
++             if (locale == null) {
++                 locale = Locale.getDefault();
++             }
+              try {
+                  SimpleDateFormat formatter = (SimpleDateFormat) DateFormat.getDateTimeInstance(dateStyle, timeStyle,
+                          locale);

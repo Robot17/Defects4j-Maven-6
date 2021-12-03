@@ -1,0 +1,116 @@
+***************
+*** 433,439 ****
+              } else {
+                 long localInstant = iZone.convertUTCToLocal(instant);
+                 localInstant = iField.add(localInstant, value);
+-                return iZone.convertLocalToUTC(localInstant, false);
+              }
+          }
+  
+--- 433,439 ----
+              } else {
+                 long localInstant = iZone.convertUTCToLocal(instant);
+                 localInstant = iField.add(localInstant, value);
++                return iZone.convertLocalToUTC(localInstant, false, instant);
+              }
+          }
+  
+***************
+*** 445,451 ****
+              } else {
+                 long localInstant = iZone.convertUTCToLocal(instant);
+                 localInstant = iField.add(localInstant, value);
+-                return iZone.convertLocalToUTC(localInstant, false);
+              }
+          }
+  
+--- 445,451 ----
+              } else {
+                 long localInstant = iZone.convertUTCToLocal(instant);
+                 localInstant = iField.add(localInstant, value);
++                return iZone.convertLocalToUTC(localInstant, false, instant);
+              }
+          }
+  
+***************
+*** 457,470 ****
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.addWrapField(localInstant, value);
+-                 return iZone.convertLocalToUTC(localInstant, false);
+              }
+          }
+  
+          public long set(long instant, int value) {
+              long localInstant = iZone.convertUTCToLocal(instant);
+              localInstant = iField.set(localInstant, value);
+-             long result = iZone.convertLocalToUTC(localInstant, false);
+              if (get(result) != value) {
+                  throw new IllegalFieldValueException(iField.getType(), new Integer(value),
+                      "Illegal instant due to time zone offset transition: " +
+--- 457,470 ----
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.addWrapField(localInstant, value);
++                 return iZone.convertLocalToUTC(localInstant, false, instant);
+              }
+          }
+  
+          public long set(long instant, int value) {
+              long localInstant = iZone.convertUTCToLocal(instant);
+              localInstant = iField.set(localInstant, value);
++             long result = iZone.convertLocalToUTC(localInstant, false, instant);
+              if (get(result) != value) {
+                  throw new IllegalFieldValueException(iField.getType(), new Integer(value),
+                      "Illegal instant due to time zone offset transition: " +
+***************
+*** 478,484 ****
+              // cannot verify that new value stuck because set may be lenient
+              long localInstant = iZone.convertUTCToLocal(instant);
+              localInstant = iField.set(localInstant, text, locale);
+-             return iZone.convertLocalToUTC(localInstant, false);
+          }
+  
+          public int getDifference(long minuendInstant, long subtrahendInstant) {
+--- 478,484 ----
+              // cannot verify that new value stuck because set may be lenient
+              long localInstant = iZone.convertUTCToLocal(instant);
+              localInstant = iField.set(localInstant, text, locale);
++             return iZone.convertLocalToUTC(localInstant, false, instant);
+          }
+  
+          public int getDifference(long minuendInstant, long subtrahendInstant) {
+***************
+*** 525,531 ****
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.roundFloor(localInstant);
+-                 return iZone.convertLocalToUTC(localInstant, false);
+              }
+          }
+  
+--- 525,531 ----
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.roundFloor(localInstant);
++                 return iZone.convertLocalToUTC(localInstant, false, instant);
+              }
+          }
+  
+***************
+*** 537,543 ****
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.roundCeiling(localInstant);
+-                 return iZone.convertLocalToUTC(localInstant, false);
+              }
+          }
+  
+--- 537,543 ----
+              } else {
+                  long localInstant = iZone.convertUTCToLocal(instant);
+                  localInstant = iField.roundCeiling(localInstant);
++                 return iZone.convertLocalToUTC(localInstant, false, instant);
+              }
+          }
+  

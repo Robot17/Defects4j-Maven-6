@@ -1,0 +1,52 @@
+***************
+*** 277,283 ****
+  
+              double previousT = interpolator.getGlobalPreviousTime();
+              final double currentT = interpolator.getGlobalCurrentTime();
+-             resetOccurred = false;
+  
+              // initialize the events states if needed
+              if (! statesInitialized) {
+--- 277,282 ----
+  
+              double previousT = interpolator.getGlobalPreviousTime();
+              final double currentT = interpolator.getGlobalCurrentTime();
+  
+              // initialize the events states if needed
+              if (! statesInitialized) {
+***************
+*** 331,336 ****
+                  if (isLastStep) {
+                      // the event asked to stop integration
+                      System.arraycopy(eventY, 0, y, 0, y.length);
+                      return eventT;
+                  }
+  
+--- 330,338 ----
+                  if (isLastStep) {
+                      // the event asked to stop integration
+                      System.arraycopy(eventY, 0, y, 0, y.length);
++                     for (final EventState remaining : occuringEvents) {
++                         remaining.stepAccepted(eventT, eventY);
++                     }
+                      return eventT;
+                  }
+  
+***************
+*** 340,345 ****
+                      System.arraycopy(eventY, 0, y, 0, y.length);
+                      computeDerivatives(eventT, y, yDot);
+                      resetOccurred = true;
+                      return eventT;
+                  }
+  
+--- 342,350 ----
+                      System.arraycopy(eventY, 0, y, 0, y.length);
+                      computeDerivatives(eventT, y, yDot);
+                      resetOccurred = true;
++                     for (final EventState remaining : occuringEvents) {
++                         remaining.stepAccepted(eventT, eventY);
++                     }
+                      return eventT;
+                  }
+  

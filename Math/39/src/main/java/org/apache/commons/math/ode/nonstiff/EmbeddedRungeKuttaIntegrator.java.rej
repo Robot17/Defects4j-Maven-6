@@ -1,0 +1,24 @@
+***************
+*** 247,252 ****
+          }
+  
+          stepSize = hNew;
+  
+          // next stages
+          for (int k = 1; k < stages; ++k) {
+--- 247,261 ----
+          }
+  
+          stepSize = hNew;
++         if (forward) {
++             if (stepStart + stepSize >= t) {
++                 stepSize = t - stepStart;
++             }
++         } else {
++             if (stepStart + stepSize <= t) {
++                 stepSize = t - stepStart;
++             }
++         }
+  
+          // next stages
+          for (int k = 1; k < stages; ++k) {

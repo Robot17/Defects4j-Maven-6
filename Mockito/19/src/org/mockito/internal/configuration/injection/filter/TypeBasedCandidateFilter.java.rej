@@ -1,0 +1,32 @@
+***************
+*** 17,23 ****
+          this.next = next;
+      }
+  
+-     public OngoingInjecter filterCandidate(Collection<Object> mocks, Field field, Object fieldInstance) {
+          List<Object> mockTypeMatches = new ArrayList<Object>();
+          for (Object mock : mocks) {
+              if (field.getType().isAssignableFrom(mock.getClass())) {
+--- 17,23 ----
+          this.next = next;
+      }
+  
++     public OngoingInjecter filterCandidate(Collection<Object> mocks, Field field, List<Field> fields, Object fieldInstance) {
+          List<Object> mockTypeMatches = new ArrayList<Object>();
+          for (Object mock : mocks) {
+              if (field.getType().isAssignableFrom(mock.getClass())) {
+***************
+*** 25,30 ****
+              }
+          }
+  
+-         return next.filterCandidate(mockTypeMatches, field, fieldInstance);
+      }
+  }
+--- 25,30 ----
+              }
+          }
+  
++         return next.filterCandidate(mockTypeMatches, field, fields, fieldInstance);
+      }
+  }

@@ -1,0 +1,27 @@
+***************
+*** 89,100 ****
+  
+      /** {@inheritDoc} */
+      public double getFunctionValue() {
+-         return optimizer.getFunctionValue();
+      }
+  
+      /** {@inheritDoc} */
+      public double getResult() {
+-         return optimizer.getResult();
+      }
+  
+      /** {@inheritDoc} */
+--- 89,100 ----
+  
+      /** {@inheritDoc} */
+      public double getFunctionValue() {
++         return optimaValues[0];
+      }
+  
+      /** {@inheritDoc} */
+      public double getResult() {
++         return optima[0];
+      }
+  
+      /** {@inheritDoc} */

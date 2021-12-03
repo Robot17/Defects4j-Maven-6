@@ -1,0 +1,17 @@
+***************
+*** 181,187 ****
+  
+      /** {@inheritDoc} */
+      public boolean isSupportUpperBoundInclusive() {
+-         return false;
+      }
+  
+      /**
+--- 181,187 ----
+  
+      /** {@inheritDoc} */
+      public boolean isSupportUpperBoundInclusive() {
++         return true;
+      }
+  
+      /**

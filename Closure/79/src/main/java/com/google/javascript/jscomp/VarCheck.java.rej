@@ -1,0 +1,16 @@
+***************
+*** 218,223 ****
+      getSynthesizedExternsRoot().addChildToBack(
+          new Node(Token.VAR, nameNode));
+      varsToDeclareInExterns.remove(varName);
+    }
+  
+    /**
+--- 218,224 ----
+      getSynthesizedExternsRoot().addChildToBack(
+          new Node(Token.VAR, nameNode));
+      varsToDeclareInExterns.remove(varName);
++     compiler.reportCodeChange();
+    }
+  
+    /**

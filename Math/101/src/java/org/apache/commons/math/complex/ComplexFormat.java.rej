@@ -1,0 +1,18 @@
+***************
+*** 374,380 ****
+          int n = getImaginaryCharacter().length();
+          startIndex = pos.getIndex();
+          int endIndex = startIndex + n;
+-         if (
+              source.substring(startIndex, endIndex).compareTo(
+              getImaginaryCharacter()) != 0) {
+              // set index back to initial, error index should be the start index
+--- 374,381 ----
+          int n = getImaginaryCharacter().length();
+          startIndex = pos.getIndex();
+          int endIndex = startIndex + n;
++         if ((startIndex >= source.length()) ||
++             (endIndex > source.length()) ||
+              source.substring(startIndex, endIndex).compareTo(
+              getImaginaryCharacter()) != 0) {
+              // set index back to initial, error index should be the start index

@@ -1,0 +1,35 @@
+***************
+*** 215,221 ****
+              DurationField loopUnitField = loopType.getDurationType().getField(iChronology);
+              if (i > 0) {
+                  int compare = lastUnitField.compareTo(loopUnitField);
+-                 if (compare < 0 || (compare != 0 && loopUnitField.isSupported() == false)) {
+                      throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                              types[i - 1].getName() + " < " + loopType.getName());
+                  } else if (compare == 0) {
+--- 215,221 ----
+              DurationField loopUnitField = loopType.getDurationType().getField(iChronology);
+              if (i > 0) {
+                  int compare = lastUnitField.compareTo(loopUnitField);
++                 if (compare < 0) {
+                      throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                              types[i - 1].getName() + " < " + loopType.getName());
+                  } else if (compare == 0) {
+***************
+*** 446,451 ****
+                          if (compare > 0) {
+                              break;
+                          } else if (compare == 0) {
+                              DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);
+                              DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);
+                              if (rangeField.compareTo(loopRangeField) > 0) {
+--- 446,454 ----
+                          if (compare > 0) {
+                              break;
+                          } else if (compare == 0) {
++                             if (fieldType.getRangeDurationType() == null) {
++                                 break;
++                             }
+                              DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);
+                              DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);
+                              if (rangeField.compareTo(loopRangeField) > 0) {

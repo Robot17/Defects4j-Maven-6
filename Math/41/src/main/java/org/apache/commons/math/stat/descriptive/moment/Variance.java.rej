@@ -1,0 +1,17 @@
+***************
+*** 517,523 ****
+                  }
+  
+                  double sumWts = 0;
+-                 for (int i = 0; i < weights.length; i++) {
+                      sumWts += weights[i];
+                  }
+  
+--- 517,523 ----
+                  }
+  
+                  double sumWts = 0;
++                 for (int i = begin; i < begin + length; i++) {
+                      sumWts += weights[i];
+                  }
+  

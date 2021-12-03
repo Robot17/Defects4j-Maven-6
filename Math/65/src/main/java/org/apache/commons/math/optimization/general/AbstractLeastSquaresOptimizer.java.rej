@@ -1,0 +1,39 @@
+***************
+*** 237,248 ****
+       * @return RMS value
+       */
+      public double getRMS() {
+-         double criterion = 0;
+-         for (int i = 0; i < rows; ++i) {
+-             final double residual = residuals[i];
+-             criterion += residual * residual * residualsWeights[i];
+-         }
+-         return Math.sqrt(criterion / rows);
+      }
+  
+      /**
+--- 237,243 ----
+       * @return RMS value
+       */
+      public double getRMS() {
++         return Math.sqrt(getChiSquare() / rows);
+      }
+  
+      /**
+***************
+*** 255,261 ****
+          double chiSquare = 0;
+          for (int i = 0; i < rows; ++i) {
+              final double residual = residuals[i];
+-             chiSquare += residual * residual / residualsWeights[i];
+          }
+          return chiSquare;
+      }
+--- 250,256 ----
+          double chiSquare = 0;
+          for (int i = 0; i < rows; ++i) {
+              final double residual = residuals[i];
++             chiSquare += residual * residual * residualsWeights[i];
+          }
+          return chiSquare;
+      }

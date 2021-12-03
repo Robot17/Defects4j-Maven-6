@@ -1,0 +1,34 @@
+***************
+*** 1670,1676 ****
+       */
+      public boolean contains(char ch) {
+          char[] thisBuf = buffer;
+-         for (int i = 0; i < this.size; i++) {
+              if (thisBuf[i] == ch) {
+                  return true;
+              }
+--- 1670,1676 ----
+       */
+      public boolean contains(char ch) {
+          char[] thisBuf = buffer;
++         for (int i = 0; i < thisBuf.length; i++) {
+              if (thisBuf[i] == ch) {
+                  return true;
+              }
+***************
+*** 1727,1733 ****
+              return -1;
+          }
+          char[] thisBuf = buffer;
+-         for (int i = startIndex; i < size; i++) {
+              if (thisBuf[i] == ch) {
+                  return i;
+              }
+--- 1727,1733 ----
+              return -1;
+          }
+          char[] thisBuf = buffer;
++         for (int i = startIndex; i < thisBuf.length; i++) {
+              if (thisBuf[i] == ch) {
+                  return i;
+              }

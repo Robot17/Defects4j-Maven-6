@@ -1,0 +1,18 @@
+***************
+*** 918,924 ****
+           * @return the original objective variables, possibly repaired.
+           */
+          public double[] repairAndDecode(final double[] x) {
+-             return
+                  decode(x);
+          }
+  
+--- 918,925 ----
+           * @return the original objective variables, possibly repaired.
+           */
+          public double[] repairAndDecode(final double[] x) {
++             return boundaries != null && isRepairMode ?
++                 decode(repair(x)) :
+                  decode(x);
+          }
+  

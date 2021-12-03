@@ -1,0 +1,17 @@
+***************
+*** 1773,1779 ****
+              return -1;
+          }
+          char[] thisBuf = buffer;
+-         int len = size - strLen + 1;
+          outer:
+          for (int i = startIndex; i < len; i++) {
+              for (int j = 0; j < strLen; j++) {
+--- 1773,1779 ----
+              return -1;
+          }
+          char[] thisBuf = buffer;
++         int len = thisBuf.length - strLen;
+          outer:
+          for (int i = startIndex; i < len; i++) {
+              for (int j = 0; j < strLen; j++) {

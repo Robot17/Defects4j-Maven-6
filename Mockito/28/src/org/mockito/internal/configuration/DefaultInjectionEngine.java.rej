@@ -1,0 +1,18 @@
+***************
+*** 90,96 ****
+  
+      private void injectMockCandidate(Class<?> awaitingInjectionClazz, Set<Object> mocks, Object fieldInstance) {
+          for(Field field : orderedInstanceFieldsFrom(awaitingInjectionClazz)) {
+-             mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();
+          }
+      }
+  
+--- 90,97 ----
+  
+      private void injectMockCandidate(Class<?> awaitingInjectionClazz, Set<Object> mocks, Object fieldInstance) {
+          for(Field field : orderedInstanceFieldsFrom(awaitingInjectionClazz)) {
++             Object injected = mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();
++             mocks.remove(injected);
+          }
+      }
+  

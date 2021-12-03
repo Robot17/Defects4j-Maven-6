@@ -1,0 +1,27 @@
+***************
+*** 25,32 ****
+              validateDoNothing((DoesNothing) answer, invocation);
+          }
+          
+      }
+  
+  
+      private void validateDoNothing(DoesNothing answer, Invocation invocation) {
+          if (!invocation.isVoid()) {
+--- 25,40 ----
+              validateDoNothing((DoesNothing) answer, invocation);
+          }
+          
++         if (answer instanceof CallsRealMethods) {
++             validateMockingConcreteClass((CallsRealMethods) answer, invocation);
++         }
+      }
+  
++     private void validateMockingConcreteClass(CallsRealMethods answer, Invocation invocation) {
++         if (invocation.getMethod().getDeclaringClass().isInterface()) {
++             reporter.cannotCallRealMethodOnInterface();
++         }
++     }
+  
+      private void validateDoNothing(DoesNothing answer, Invocation invocation) {
+          if (!invocation.isVoid()) {

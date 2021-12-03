@@ -1,0 +1,15 @@
+***************
+*** 206,211 ****
+       * @return chromosome iterator
+       */
+      public Iterator<Chromosome> iterator() {
+-         return chromosomes.iterator();
+      }
+  }
+--- 206,211 ----
+       * @return chromosome iterator
+       */
+      public Iterator<Chromosome> iterator() {
++         return getChromosomes().iterator();
+      }
+  }

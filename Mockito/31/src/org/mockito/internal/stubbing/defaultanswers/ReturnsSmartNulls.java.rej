@@ -1,0 +1,34 @@
+***************
+*** 6,11 ****
+  
+  import java.io.Serializable;
+  import java.lang.reflect.Method;
+  
+  import org.mockito.Mockito;
+  import org.mockito.cglib.proxy.MethodInterceptor;
+--- 6,12 ----
+  
+  import java.io.Serializable;
+  import java.lang.reflect.Method;
++ import java.util.Arrays;
+  
+  import org.mockito.Mockito;
+  import org.mockito.cglib.proxy.MethodInterceptor;
+***************
+*** 57,63 ****
+          }
+  
+  		private String formatMethodCall() {
+- 			return invocation.getMethod().getName() + "()";
+  		}
+      }
+  
+--- 58,65 ----
+          }
+  
+  		private String formatMethodCall() {
++ 			String args = Arrays.toString(invocation.getArguments());
++ 			return invocation.getMethod().getName() + "(" + args.substring(1, args.length() - 1) +	")";
+  		}
+      }
+  

@@ -1,0 +1,34 @@
+***************
+*** 155,161 ****
+          int iteration = 0;
+          final ConvergenceChecker<PointValuePair> checker = getConvergenceChecker();
+          while (true) {
+-             if (iteration > 0) {
+                  boolean converged = true;
+                  for (int i = 0; i < simplex.getSize(); i++) {
+                      PointValuePair prev = previous[i];
+--- 155,161 ----
+          int iteration = 0;
+          final ConvergenceChecker<PointValuePair> checker = getConvergenceChecker();
+          while (true) {
++             if (getIterations() > 0) {
+                  boolean converged = true;
+                  for (int i = 0; i < simplex.getSize(); i++) {
+                      PointValuePair prev = previous[i];
+***************
+*** 172,178 ****
+              previous = simplex.getPoints();
+              simplex.iterate(evalFunc, comparator);
+  
+- 			++iteration;
+          }
+      }
+  
+--- 172,178 ----
+              previous = simplex.getPoints();
+              simplex.iterate(evalFunc, comparator);
+  
++             incrementIterationCount();
+          }
+      }
+  

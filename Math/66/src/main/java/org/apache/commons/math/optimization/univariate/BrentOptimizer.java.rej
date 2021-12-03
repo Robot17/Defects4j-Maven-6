@@ -1,0 +1,145 @@
+***************
+*** 41,50 ****
+       * Construct a solver.
+       */
+      public BrentOptimizer() {
+-         setMaxEvaluations(Integer.MAX_VALUE);
+          setMaximalIterationCount(100);
+-         setAbsoluteAccuracy(1E-10);
+-         setRelativeAccuracy(1.0e-14);
+      }
+  
+      /**
+--- 41,50 ----
+       * Construct a solver.
+       */
+      public BrentOptimizer() {
++         setMaxEvaluations(1000);
+          setMaximalIterationCount(100);
++         setAbsoluteAccuracy(1e-11);
++         setRelativeAccuracy(1e-9);
+      }
+  
+      /**
+***************
+*** 54,70 ****
+       */
+      protected double doOptimize()
+          throws MaxIterationsExceededException, FunctionEvaluationException {
+-         throw new UnsupportedOperationException();
+-     }
+-     public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max, final double startValue) throws MaxIterationsExceededException, FunctionEvaluationException {
+-         clearResult();
+          return localMin(getGoalType() == GoalType.MINIMIZE,
+-                         f, goalType, min, startValue, max,
+                          getRelativeAccuracy(), getAbsoluteAccuracy());
+      }
+-     public double optimize(final UnivariateRealFunction f, final GoalType goalType, final double min, final double max) throws MaxIterationsExceededException, FunctionEvaluationException {
+-         return optimize(f, goalType, min, max, min + GOLDEN_SECTION * (max - min));
+-     }
+  
+      /**
+       * Find the minimum of the function within the interval {@code (lo, hi)}.
+--- 54,63 ----
+       */
+      protected double doOptimize()
+          throws MaxIterationsExceededException, FunctionEvaluationException {
+          return localMin(getGoalType() == GoalType.MINIMIZE,
++                         getMin(), getStartValue(), getMax(),
+                          getRelativeAccuracy(), getAbsoluteAccuracy());
+      }
+  
+      /**
+       * Find the minimum of the function within the interval {@code (lo, hi)}.
+***************
+*** 91,98 ****
+       * the function.
+       */
+      private double localMin(boolean isMinim,
+-                             UnivariateRealFunction f,
+-                             GoalType goalType,
+                              double lo, double mid, double hi,
+                              double eps, double t)
+          throws MaxIterationsExceededException, FunctionEvaluationException {
+--- 84,89 ----
+       * the function.
+       */
+      private double localMin(boolean isMinim,
+                              double lo, double mid, double hi,
+                              double eps, double t)
+          throws MaxIterationsExceededException, FunctionEvaluationException {
+***************
+*** 116,130 ****
+          double w = x;
+          double d = 0;
+          double e = 0;
+-         double fx = computeObjectiveValue(f, x);
+-         if (goalType == GoalType.MAXIMIZE) {
+              fx = -fx;
+          }
+          double fv = fx;
+          double fw = fx;
+  
+-         int count = 0;
+-         while (count < maximalIterationCount) {
+              double m = 0.5 * (a + b);
+              final double tol1 = eps * Math.abs(x) + t;
+              final double tol2 = 2 * tol1;
+--- 107,120 ----
+          double w = x;
+          double d = 0;
+          double e = 0;
++         double fx = computeObjectiveValue(x);
++         if (!isMinim) {
+              fx = -fx;
+          }
+          double fv = fx;
+          double fw = fx;
+  
++         while (true) {
+              double m = 0.5 * (a + b);
+              final double tol1 = eps * Math.abs(x) + t;
+              final double tol2 = 2 * tol1;
+***************
+*** 197,204 ****
+                      u = x + d;
+                  }
+  
+-                 double fu = computeObjectiveValue(f, u);
+-                 if (goalType == GoalType.MAXIMIZE) {
+                      fu = -fu;
+                  }
+  
+--- 187,194 ----
+                      u = x + d;
+                  }
+  
++                 double fu = computeObjectiveValue(u);
++                 if (!isMinim) {
+                      fu = -fu;
+                  }
+  
+***************
+*** 235,245 ****
+                      }
+                  }
+              } else { // termination
+-                 setResult(x, (goalType == GoalType.MAXIMIZE) ? -fx : fx, count);
+                  return x;
+              }
+-             ++count;
+          }
+-         throw new MaxIterationsExceededException(maximalIterationCount);
+      }
+  }
+--- 225,234 ----
+                      }
+                  }
+              } else { // termination
++                 setFunctionValue(isMinim ? fx : -fx);
+                  return x;
+              }
++             incrementIterationsCounter();
+          }
+      }
+  }

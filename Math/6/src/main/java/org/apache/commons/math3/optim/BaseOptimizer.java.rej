@@ -1,0 +1,17 @@
+***************
+*** 48,54 ****
+          this.checker = checker;
+  
+          evaluations = new Incrementor(0, new MaxEvalCallback());
+-         iterations = new Incrementor(0, new MaxIterCallback());
+      }
+  
+      /**
+--- 48,54 ----
+          this.checker = checker;
+  
+          evaluations = new Incrementor(0, new MaxEvalCallback());
++         iterations = new Incrementor(Integer.MAX_VALUE, new MaxIterCallback());
+      }
+  
+      /**

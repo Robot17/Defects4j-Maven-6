@@ -1,0 +1,23 @@
+***************
+*** 234,246 ****
+              indices[i] = idx;
+          }
+  
+-         int idx = 1;
+-         while (count < index) {
+-             count += idx;
+-             ++idx;
+-         }
+-         --idx;
+-         indices[last] = idx;
+  
+          return indices;
+      }
+--- 234,240 ----
+              indices[i] = idx;
+          }
+  
++         indices[last] = index - count;
+  
+          return indices;
+      }

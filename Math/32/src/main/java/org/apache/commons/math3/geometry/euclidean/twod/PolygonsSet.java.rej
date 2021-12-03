@@ -1,0 +1,17 @@
+***************
+*** 133,139 ****
+  
+          if (v.length == 0) {
+              final BSPTree<Euclidean2D> tree = getTree(false);
+-             if ((Boolean) tree.getAttribute()) {
+                  // the instance covers the whole space
+                  setSize(Double.POSITIVE_INFINITY);
+                  setBarycenter(Vector2D.NaN);
+--- 133,139 ----
+  
+          if (v.length == 0) {
+              final BSPTree<Euclidean2D> tree = getTree(false);
++             if (tree.getCut() == null && (Boolean) tree.getAttribute()) {
+                  // the instance covers the whole space
+                  setSize(Double.POSITIVE_INFINITY);
+                  setBarycenter(Vector2D.NaN);

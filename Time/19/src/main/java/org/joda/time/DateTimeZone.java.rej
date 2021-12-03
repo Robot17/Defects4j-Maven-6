@@ -1,0 +1,17 @@
+***************
+*** 897,903 ****
+                      return offsetLocal;
+                  }
+              }
+-         } else if (offsetLocal > 0) {
+              long prev = previousTransition(instantAdjusted);
+              if (prev < instantAdjusted) {
+                  int offsetPrev = getOffset(prev);
+--- 897,903 ----
+                      return offsetLocal;
+                  }
+              }
++         } else if (offsetLocal >= 0) {
+              long prev = previousTransition(instantAdjusted);
+              if (prev < instantAdjusted) {
+                  int offsetPrev = getOffset(prev);

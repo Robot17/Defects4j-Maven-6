@@ -1,0 +1,24 @@
+***************
+*** 1045,1058 ****
+          if (str == null || searchStr == null) {
+              return false;
+          }
+-         int len = searchStr.length();
+-         int max = str.length() - len;
+-         for (int i = 0; i <= max; i++) {
+-             if (str.regionMatches(true, i, searchStr, 0, len)) {
+-                 return true;
+-             }
+-         }
+-         return false;
+      }
+  
+      // IndexOfAny chars
+--- 1045,1051 ----
+          if (str == null || searchStr == null) {
+              return false;
+          }
++         return contains(str.toUpperCase(), searchStr.toUpperCase());
+      }
+  
+      // IndexOfAny chars

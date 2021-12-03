@@ -1,0 +1,36 @@
+***************
+*** 204,211 ****
+  
+              }
+              else {
+-                 this.seriesKeys = null;
+-                 this.categoryKeys = null;
+              }
+          }
+  
+--- 204,211 ----
+  
+              }
+              else {
++                 this.seriesKeys = new Comparable[0];
++                 this.categoryKeys = new Comparable[0];
+              }
+          }
+  
+***************
+*** 335,341 ****
+          if (categoryKeys == null) {
+              throw new IllegalArgumentException("Null 'categoryKeys' argument.");
+          }
+-         if (categoryKeys.length != this.startData[0].length) {
+              throw new IllegalArgumentException(
+                      "The number of categories does not match the data.");
+          }
+--- 335,341 ----
+          if (categoryKeys == null) {
+              throw new IllegalArgumentException("Null 'categoryKeys' argument.");
+          }
++         if (categoryKeys.length != getCategoryCount()) {
+              throw new IllegalArgumentException(
+                      "The number of categories does not match the data.");
+          }

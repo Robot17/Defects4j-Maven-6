@@ -1,0 +1,17 @@
+***************
+*** 300,306 ****
+       */
+      @Deprecated
+      public double getPct(Object v) {
+-         return getCumPct((Comparable<?>) v);
+      }
+  
+      /**
+--- 300,306 ----
+       */
+      @Deprecated
+      public double getPct(Object v) {
++         return getPct((Comparable<?>) v);
+      }
+  
+      /**

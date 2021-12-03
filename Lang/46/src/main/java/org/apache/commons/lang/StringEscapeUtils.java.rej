@@ -1,0 +1,134 @@
+***************
+*** 83,89 ****
+       * @return String with escaped values, <code>null</code> if null string input
+       */
+      public static String escapeJava(String str) {
+-         return escapeJavaStyleString(str, false, false);
+      }
+  
+      /**
+--- 83,89 ----
+       * @return String with escaped values, <code>null</code> if null string input
+       */
+      public static String escapeJava(String str) {
++         return escapeJavaStyleString(str, false);
+      }
+  
+      /**
+***************
+*** 99,105 ****
+       * @throws IOException if error occurs on underlying Writer
+       */
+      public static void escapeJava(Writer out, String str) throws IOException {
+-         escapeJavaStyleString(out, str, false, false);
+      }
+  
+      /**
+--- 99,105 ----
+       * @throws IOException if error occurs on underlying Writer
+       */
+      public static void escapeJava(Writer out, String str) throws IOException {
++         escapeJavaStyleString(out, str, false);
+      }
+  
+      /**
+***************
+*** 124,130 ****
+       * @return String with escaped values, <code>null</code> if null string input
+       */
+      public static String escapeJavaScript(String str) {
+-         return escapeJavaStyleString(str, true, true);
+      }
+  
+      /**
+--- 124,130 ----
+       * @return String with escaped values, <code>null</code> if null string input
+       */
+      public static String escapeJavaScript(String str) {
++         return escapeJavaStyleString(str, true);
+      }
+  
+      /**
+***************
+*** 140,146 ****
+       * @throws IOException if error occurs on underlying Writer
+       **/
+      public static void escapeJavaScript(Writer out, String str) throws IOException {
+-         escapeJavaStyleString(out, str, true, true);
+      }
+  
+      /**
+--- 140,146 ----
+       * @throws IOException if error occurs on underlying Writer
+       **/
+      public static void escapeJavaScript(Writer out, String str) throws IOException {
++         escapeJavaStyleString(out, str, true);
+      }
+  
+      /**
+***************
+*** 151,163 ****
+       * @param escapeForwardSlash TODO
+       * @return the escaped string
+       */
+-     private static String escapeJavaStyleString(String str, boolean escapeSingleQuotes, boolean escapeForwardSlash) {
+          if (str == null) {
+              return null;
+          }
+          try {
+              StringWriter writer = new StringWriter(str.length() * 2);
+-             escapeJavaStyleString(writer, str, escapeSingleQuotes, escapeForwardSlash);
+              return writer.toString();
+          } catch (IOException ioe) {
+              // this should never ever happen while writing to a StringWriter
+--- 151,163 ----
+       * @param escapeForwardSlash TODO
+       * @return the escaped string
+       */
++     private static String escapeJavaStyleString(String str, boolean escapeSingleQuotes) {
+          if (str == null) {
+              return null;
+          }
+          try {
+              StringWriter writer = new StringWriter(str.length() * 2);
++             escapeJavaStyleString(writer, str, escapeSingleQuotes);
+              return writer.toString();
+          } catch (IOException ioe) {
+              // this should never ever happen while writing to a StringWriter
+***************
+*** 175,182 ****
+       * @param escapeForwardSlash TODO
+       * @throws IOException if an IOException occurs
+       */
+-     private static void escapeJavaStyleString(Writer out, String str, boolean escapeSingleQuote,
+-             boolean escapeForwardSlash) throws IOException {
+          if (out == null) {
+              throw new IllegalArgumentException("The Writer must not be null");
+          }
+--- 175,181 ----
+       * @param escapeForwardSlash TODO
+       * @throws IOException if an IOException occurs
+       */
++     private static void escapeJavaStyleString(Writer out, String str, boolean escapeSingleQuote) throws IOException {
+          if (out == null) {
+              throw new IllegalArgumentException("The Writer must not be null");
+          }
+***************
+*** 242,250 ****
+                          out.write('\\');
+                          break;
+                      case '/' :
+-                         if (escapeForwardSlash) {
+                              out.write('\\');
+-                         }
+                          out.write('/');
+                          break;
+                      default :
+--- 241,247 ----
+                          out.write('\\');
+                          break;
+                      case '/' :
+                              out.write('\\');
+                          out.write('/');
+                          break;
+                      default :

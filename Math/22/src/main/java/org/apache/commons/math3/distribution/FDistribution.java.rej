@@ -1,0 +1,17 @@
+***************
+*** 272,278 ****
+  
+      /** {@inheritDoc} */
+      public boolean isSupportLowerBoundInclusive() {
+-         return true;
+      }
+  
+      /** {@inheritDoc} */
+--- 272,278 ----
+  
+      /** {@inheritDoc} */
+      public boolean isSupportLowerBoundInclusive() {
++         return false;
+      }
+  
+      /** {@inheritDoc} */

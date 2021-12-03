@@ -1,0 +1,34 @@
+***************
+*** 48,54 ****
+                                     final int populationLimit,
+                                     final double elitismRate) {
+          super(chromosomes, populationLimit);
+-         this.elitismRate = elitismRate;
+      }
+  
+      /**
+--- 48,54 ----
+                                     final int populationLimit,
+                                     final double elitismRate) {
+          super(chromosomes, populationLimit);
++         setElitismRate(elitismRate);
+      }
+  
+      /**
+***************
+*** 62,68 ****
+       */
+      public ElitisticListPopulation(final int populationLimit, final double elitismRate) {
+          super(populationLimit);
+-         this.elitismRate = elitismRate;
+      }
+  
+      /**
+--- 62,68 ----
+       */
+      public ElitisticListPopulation(final int populationLimit, final double elitismRate) {
+          super(populationLimit);
++         setElitismRate(elitismRate);
+      }
+  
+      /**

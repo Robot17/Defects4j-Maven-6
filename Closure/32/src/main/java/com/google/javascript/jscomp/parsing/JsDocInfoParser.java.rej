@@ -1,0 +1,92 @@
+***************
+*** 1355,1366 ****
+      // Track the start of the line to count whitespace that
+      // the tokenizer skipped. Because this case is rare, it's easier
+      // to do this here than in the tokenizer.
+  
+      do {
+        switch (token) {
+          case STAR:
+            if (ignoreStar) {
+              // Mark the position after the star as the new start of the line.
+            } else {
+              // The star is part of the comment.
+              if (builder.length() > 0) {
+--- 1355,1368 ----
+      // Track the start of the line to count whitespace that
+      // the tokenizer skipped. Because this case is rare, it's easier
+      // to do this here than in the tokenizer.
++     int lineStartChar = -1;
+  
+      do {
+        switch (token) {
+          case STAR:
+            if (ignoreStar) {
+              // Mark the position after the star as the new start of the line.
++             lineStartChar = stream.getCharno() + 1;
+            } else {
+              // The star is part of the comment.
+              if (builder.length() > 0) {
+***************
+*** 1379,1384 ****
+            }
+  
+            ignoreStar = true;
+            token = next();
+            continue;
+  
+--- 1381,1387 ----
+            }
+  
+            ignoreStar = true;
++           lineStartChar = 0;
+            token = next();
+            continue;
+  
+***************
+*** 1386,1392 ****
+            ignoreStar = false;
+            state = State.SEARCHING_ANNOTATION;
+  
+                // All tokens must be separated by a space.
+  
+            if (token == JsDocToken.EOC ||
+                token == JsDocToken.EOF ||
+--- 1389,1407 ----
+            ignoreStar = false;
+            state = State.SEARCHING_ANNOTATION;
+  
++           boolean isEOC = token == JsDocToken.EOC;
++           if (!isEOC) {
++             if (lineStartChar != -1 && option == WhitespaceOption.PRESERVE) {
++               int numSpaces = stream.getCharno() - lineStartChar;
++               for (int i = 0; i < numSpaces; i++) {
++                 builder.append(' ');
++               }
++               lineStartChar = -1;
++             } else if (builder.length() > 0) {
+                // All tokens must be separated by a space.
++               builder.append(' ');
++             }
++           }
+  
+            if (token == JsDocToken.EOC ||
+                token == JsDocToken.EOF ||
+***************
+*** 1411,1419 ****
+              return new ExtractionInfo(multilineText, token);
+            }
+  
+-           if (builder.length() > 0) {
+-             builder.append(' ');
+-           }
+            builder.append(toString(token));
+  
+            line = stream.getRemainingJSDocLine();
+--- 1426,1431 ----
+              return new ExtractionInfo(multilineText, token);
+            }
+  
+            builder.append(toString(token));
+  
+            line = stream.getRemainingJSDocLine();

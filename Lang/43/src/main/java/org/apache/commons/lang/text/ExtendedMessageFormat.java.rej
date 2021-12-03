@@ -1,0 +1,16 @@
+***************
+*** 419,425 ****
+          int start = pos.getIndex();
+          char[] c = pattern.toCharArray();
+          if (escapingOn && c[start] == QUOTE) {
+-             next(pos);
+              return appendTo == null ? null : appendTo.append(QUOTE);
+          }
+          int lastHold = start;
+--- 419,424 ----
+          int start = pos.getIndex();
+          char[] c = pattern.toCharArray();
+          if (escapingOn && c[start] == QUOTE) {
+              return appendTo == null ? null : appendTo.append(QUOTE);
+          }
+          int lastHold = start;

@@ -1,0 +1,16 @@
+***************
+*** 1416,1421 ****
+          }
+  
+          // fix value to take special cases (+0/+0, +0/-0, -0/+0, -0/-0, +/-infinity) correctly
+  
+      }
+  
+--- 1416,1422 ----
+          }
+  
+          // fix value to take special cases (+0/+0, +0/-0, -0/+0, -0/-0, +/-infinity) correctly
++         result[resultOffset] = FastMath.atan2(y[yOffset], x[xOffset]);
+  
+      }
+  

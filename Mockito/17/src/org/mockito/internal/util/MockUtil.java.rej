@@ -1,0 +1,37 @@
+***************
+*** 16,21 ****
+  import org.mockito.internal.creation.jmock.ClassImposterizer;
+  import org.mockito.internal.util.reflection.LenientCopyTool;
+  
+  
+  @SuppressWarnings("unchecked")
+  public class MockUtil {
+--- 16,22 ----
+  import org.mockito.internal.creation.jmock.ClassImposterizer;
+  import org.mockito.internal.util.reflection.LenientCopyTool;
+  
++ import java.io.Serializable;
+  
+  @SuppressWarnings("unchecked")
+  public class MockUtil {
+***************
+*** 42,48 ****
+          Class<?>[] interfaces = settings.getExtraInterfaces();
+  
+          Class<?>[] ancillaryTypes;
+              ancillaryTypes = interfaces == null ? new Class<?>[0] : interfaces;
+  
+          Object spiedInstance = settings.getSpiedInstance();
+          
+--- 43,53 ----
+          Class<?>[] interfaces = settings.getExtraInterfaces();
+  
+          Class<?>[] ancillaryTypes;
++         if (settings.isSerializable()) {
++             ancillaryTypes = interfaces == null ? new Class<?>[] {Serializable.class} : new ArrayUtils().concat(interfaces, Serializable.class);
++         } else {
+              ancillaryTypes = interfaces == null ? new Class<?>[0] : interfaces;
++         }
+  
+          Object spiedInstance = settings.getSpiedInstance();
+          

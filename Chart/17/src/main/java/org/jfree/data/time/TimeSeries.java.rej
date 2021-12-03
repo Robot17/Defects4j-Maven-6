@@ -1,0 +1,18 @@
+***************
+*** 854,860 ****
+       *         subclasses may differ.
+       */
+      public Object clone() throws CloneNotSupportedException {
+-         Object clone = createCopy(0, getItemCount() - 1);
+          return clone;
+      }
+  
+--- 854,861 ----
+       *         subclasses may differ.
+       */
+      public Object clone() throws CloneNotSupportedException {
++         TimeSeries clone = (TimeSeries) super.clone();
++         clone.data = (List) ObjectUtilities.deepClone(this.data);
+          return clone;
+      }
+  

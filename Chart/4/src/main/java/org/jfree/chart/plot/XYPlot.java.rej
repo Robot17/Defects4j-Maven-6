@@ -1,0 +1,32 @@
+***************
+*** 4490,4495 ****
+                      }
+                  }
+                  
+                      Collection c = r.getAnnotations();
+                      Iterator i = c.iterator();
+                      while (i.hasNext()) {
+--- 4490,4496 ----
+                      }
+                  }
+                  
++                 if (r != null) {
+                      Collection c = r.getAnnotations();
+                      Iterator i = c.iterator();
+                      while (i.hasNext()) {
+***************
+*** 4498,4503 ****
+                              includedAnnotations.add(a);
+                          }
+                      }
+              }
+          }
+  
+--- 4499,4505 ----
+                              includedAnnotations.add(a);
+                          }
+                      }
++                 }
+              }
+          }
+  

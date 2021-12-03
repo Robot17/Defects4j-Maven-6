@@ -1,0 +1,42 @@
+***************
+*** 162,168 ****
+              return null;
+          }
+          
+              // minus signs should be leading, invalid expression
+  
+          // parse '/'
+          int startIndex = pos.getIndex();
+--- 162,172 ----
+              return null;
+          }
+          
++         if (num.intValue() < 0) {
+              // minus signs should be leading, invalid expression
++             pos.setIndex(initialIndex);
++             return null;
++         }
+  
+          // parse '/'
+          int startIndex = pos.getIndex();
+***************
+*** 197,203 ****
+              return null;
+          }
+          
+              // minus signs must be leading, invalid
+  
+          int w = whole.intValue();
+          int n = num.intValue();
+--- 201,211 ----
+              return null;
+          }
+          
++         if (den.intValue() < 0) {
+              // minus signs must be leading, invalid
++             pos.setIndex(initialIndex);
++             return null;
++         }
+  
+          int w = whole.intValue();
+          int n = num.intValue();

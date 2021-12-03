@@ -1,0 +1,36 @@
+***************
+*** 695,700 ****
+       * @since 1.0.3
+       */
+      public int getDomainAxisIndex(CategoryAxis axis) {
+          return this.domainAxes.indexOf(axis);
+      }
+      
+--- 695,703 ----
+       * @since 1.0.3
+       */
+      public int getDomainAxisIndex(CategoryAxis axis) {
++         if (axis == null) {
++             throw new IllegalArgumentException("Null 'axis' argument.");
++         }
+          return this.domainAxes.indexOf(axis);
+      }
+      
+***************
+*** 970,975 ****
+       * @since 1.0.7
+       */
+      public int getRangeAxisIndex(ValueAxis axis) {
+          int result = this.rangeAxes.indexOf(axis);
+          if (result < 0) { // try the parent plot
+              Plot parent = getParent();
+--- 973,981 ----
+       * @since 1.0.7
+       */
+      public int getRangeAxisIndex(ValueAxis axis) {
++         if (axis == null) {
++             throw new IllegalArgumentException("Null 'axis' argument.");
++         }
+          int result = this.rangeAxes.indexOf(axis);
+          if (result < 0) { // try the parent plot
+              Plot parent = getParent();

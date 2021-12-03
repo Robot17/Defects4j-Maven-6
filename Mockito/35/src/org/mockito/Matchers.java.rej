@@ -1,0 +1,51 @@
+***************
+*** 359,365 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T isA(Class<T> clazz) {
+-         return reportMatcher(new InstanceOf(clazz)).<T>returnNull();
+      }
+  
+      /**
+--- 359,365 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T isA(Class<T> clazz) {
++         return reportMatcher(new InstanceOf(clazz)).<T>returnFor(clazz);
+      }
+  
+      /**
+***************
+*** 476,482 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T eq(T value) {
+-         return reportMatcher(new Equals(value)).<T>returnNull();
+      }  
+  
+      /**
+--- 476,482 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T eq(T value) {
++         return (T) reportMatcher(new Equals(value)).<T>returnFor((Class) value.getClass());
+      }  
+  
+      /**
+***************
+*** 513,519 ****
+       * @return <code>null</code>.
+       */
+      public static <T> T same(T value) {
+-         return reportMatcher(new Same(value)).<T>returnNull();
+      }
+  
+      /**
+--- 513,519 ----
+       * @return <code>null</code>.
+       */
+      public static <T> T same(T value) {
++         return (T) reportMatcher(new Same(value)).<T>returnFor((Class) value.getClass());
+      }
+  
+      /**

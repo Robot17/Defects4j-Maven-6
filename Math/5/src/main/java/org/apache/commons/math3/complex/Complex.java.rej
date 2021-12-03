@@ -1,0 +1,17 @@
+***************
+*** 302,308 ****
+          }
+  
+          if (real == 0.0 && imaginary == 0.0) {
+-             return NaN;
+          }
+  
+          if (isInfinite) {
+--- 302,308 ----
+          }
+  
+          if (real == 0.0 && imaginary == 0.0) {
++             return INF;
+          }
+  
+          if (isInfinite) {

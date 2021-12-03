@@ -1,0 +1,33 @@
+***************
+*** 107,112 ****
+       */
+      @Deprecated
+      public void addValue(Object v) {
+      
+      /**
+       * Adds 1 to the frequency count for v.
+--- 107,114 ----
+       */
+      @Deprecated
+      public void addValue(Object v) {
++         addValue((Comparable<?>) v);
++     }
+      
+      /**
+       * Adds 1 to the frequency count for v.
+***************
+*** 118,123 ****
+       * @param v the value to add.
+       * @throws IllegalArgumentException if <code>v</code> is not comparable with previous entries
+       */
+          Object obj = v;
+          if (v instanceof Integer) {
+             obj = Long.valueOf(((Integer) v).longValue());
+--- 120,126 ----
+       * @param v the value to add.
+       * @throws IllegalArgumentException if <code>v</code> is not comparable with previous entries
+       */
++     public void addValue(Comparable<?>v){
+          Object obj = v;
+          if (v instanceof Integer) {
+             obj = Long.valueOf(((Integer) v).longValue());

@@ -1,0 +1,37 @@
+***************
+*** 103,111 ****
+  
+          // iterate until convergence is reached
+          PointVectorValuePair current = null;
+-         int iter = 0;
+          for (boolean converged = false; !converged;) {
+-             ++iter;
+  
+              // evaluate the objective function and its jacobian
+              PointVectorValuePair previous = current;
+--- 103,110 ----
+  
+          // iterate until convergence is reached
+          PointVectorValuePair current = null;
+          for (boolean converged = false; !converged;) {
++             incrementIterationCount();
+  
+              // evaluate the objective function and its jacobian
+              PointVectorValuePair previous = current;
+***************
+*** 157,163 ****
+  
+              // Check convergence.
+              if (previous != null) {
+-                 converged = checker.converged(iter, previous, current);
+                  if (converged) {
+                      setCost(computeCost(currentResiduals));
+                      return current;
+--- 156,162 ----
+  
+              // Check convergence.
+              if (previous != null) {
++                 converged = checker.converged(getIterations(), previous, current);
+                  if (converged) {
+                      setCost(computeCost(currentResiduals));
+                      return current;

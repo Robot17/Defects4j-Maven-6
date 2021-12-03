@@ -1,0 +1,57 @@
+***************
+*** 342,349 ****
+       * @throws IllegalArgumentException if n < 0
+       */
+      public static long factorial(final int n) {
+-         long result = Math.round(factorialDouble(n));
+-         if (result == Long.MAX_VALUE) {
+              throw new ArithmeticException(
+                      "factorial value is too large to fit in a long");
+          }
+--- 342,351 ----
+       * @throws IllegalArgumentException if n < 0
+       */
+      public static long factorial(final int n) {
++         if (n < 0) {
++             throw new IllegalArgumentException("must have n >= 0 for n!");
++         }
++         if (n > 20) {
+              throw new ArithmeticException(
+                      "factorial value is too large to fit in a long");
+          }
+***************
+*** 374,379 ****
+          if (n < 0) {
+              throw new IllegalArgumentException("must have n >= 0 for n!");
+          }
+          return Math.floor(Math.exp(factorialLog(n)) + 0.5);
+      }
+  
+--- 376,384 ----
+          if (n < 0) {
+              throw new IllegalArgumentException("must have n >= 0 for n!");
+          }
++         if (n < 21) {
++             return factorial(n);
++         }
+          return Math.floor(Math.exp(factorialLog(n)) + 0.5);
+      }
+  
+***************
+*** 394,399 ****
+          if (n < 0) {
+              throw new IllegalArgumentException("must have n > 0 for n!");
+          }
+          double logSum = 0;
+          for (int i = 2; i <= n; i++) {
+              logSum += Math.log((double)i);
+--- 399,407 ----
+          if (n < 0) {
+              throw new IllegalArgumentException("must have n > 0 for n!");
+          }
++         if (n < 21) {
++             return Math.log(factorial(n));
++         }
+          double logSum = 0;
+          for (int i = 2; i <= n; i++) {
+              logSum += Math.log((double)i);
